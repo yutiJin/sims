@@ -61,7 +61,7 @@ void ShowMainInfo()
 /* 0. 创建学生信息库 */
 void CreateStuInfo(Student * L)
 {
-    Clear(MARGIN_X, INFO_END_Y + 1, 15);
+    Clear(0, INFO_END_Y + 1, N);
     char flag = 'y';
     Student *p, *s;       //指针 感觉在学习数据结构中的链表时都是用指针的
     p = L;
@@ -114,7 +114,7 @@ void CreateStuInfo(Student * L)
 /* 1. 添加(插入)学生信息 */
 void AddStuInfo(Student* L)
 {
-    Clear(MARGIN_X, INFO_END_Y + 1, 15);
+    Clear(0, INFO_END_Y + 1, N);
     Student *p, *s;
     p = L;
     while (p->next != NULL)
@@ -132,7 +132,7 @@ void AddStuInfo(Student* L)
     scanf("%s", s->stu_name);
     SetPosition(MARGIN_X, INFO_END_Y + 4);
     printf("请输入学生性别:");
-    scanf("%s", s->stu_sex);           //注意了 小鱼儿的重点 一般人看不懂
+    scanf("%s", s->stu_sex);
     SetPosition(MARGIN_X, INFO_END_Y + 5);
     printf("请输入学生数学成绩:");
     scanf("%d", &s->grades.Maths);
@@ -148,11 +148,11 @@ void AddStuInfo(Student* L)
     p->next = s;
 }
 
-/* 2. 删除学生信息(根据学号) */  //有bug
+/* 2. 删除学生信息(根据学号) */  //2018-02-02有bug   2018-02-04搞定  爽
 void DeleteStuInfo(Student * L)
 {
-    Clear(MARGIN_X, INFO_END_Y + 1, 15);
-    Student *p, *q;
+    Clear(0, INFO_END_Y + 1, N);
+    Student *p, *s;
     p = L;
     int num;
     SetPosition(MARGIN_X, INFO_END_Y + 1);
@@ -169,7 +169,7 @@ void DeleteStuInfo(Student * L)
         n++;
     }
     p = L;
-    for (i = 0; i < n ; i++ )
+    for (i = 0; i < n - 1 ; i++ )
     {
         p = p->next;
     }
@@ -180,17 +180,103 @@ void DeleteStuInfo(Student * L)
     }
     else
     {
-        q = p->next;
-        p->next = q->next;
-        free(q);
+        s = p->next;
+        p->next = s->next;
+        free(s);
     }
 
 }
 
+
+/* 3. 修改学生信息(根据学号) */
+void UpdataStuInfo(Student * L)
+{
+    Clear(0, INFO_END_Y + 1, N);
+    Student *p;
+    p = L;
+    int num;
+    SetPosition(MARGIN_X, INFO_END_Y + 1);
+    printf("你选择了3. 修改学生信息,哈哈哈，不仔细了吧！");
+    SetPosition(MARGIN_X, INFO_END_Y + 2);
+    printf("你想要修改哪一个学生的信息，告诉我他的学号，我才好帮你哦：");
+    scanf("%d", &num);
+    while ( p->stu_num != num)
+    {
+        p = p->next;
+    }
+    if (p == NULL)
+    {
+        SetPosition(MARGIN_X, INFO_END_Y + 3);
+        printf("我找不到你说的那个人，你仔细回忆一下他的学号。");
+    }
+    else
+    {
+        SetPosition(MARGIN_X, INFO_END_Y + 3);
+        printf("我找到这个同学了，请输入你要修改的内容：");
+        SetPosition(MARGIN_X, INFO_END_Y + 4);
+        printf("请输入学生学号:");
+        scanf("%d", &p->stu_num);
+        SetPosition(MARGIN_X, INFO_END_Y + 5);
+        printf("请输入学生名字:");
+        scanf("%s", p->stu_name);
+        SetPosition(MARGIN_X, INFO_END_Y + 6);
+        printf("请输入学生性别:");
+        scanf("%s", p->stu_sex);
+        SetPosition(MARGIN_X, INFO_END_Y + 7);
+        printf("请输入学生数学成绩:");
+        scanf("%d", &p->grades.Maths);
+        SetPosition(MARGIN_X, INFO_END_Y + 8);
+        printf("请输入学生语文成绩:");
+        scanf("%d", &p->grades.Chinese);
+        SetPosition(MARGIN_X, INFO_END_Y + 9);
+        printf("请输入学生英语成绩:");
+        scanf("%d", &p->grades.English);
+
+    }
+
+}
+
+/* 4. 查询学生信息(根据学号)*/
+void ShowOneStuInfo(Student * L)
+{
+    Clear(0, INFO_END_Y + 1, N);
+    Student *p;
+    p = L;
+    int num;
+    int total = 0;
+    SetPosition(MARGIN_X, INFO_END_Y + 1);
+    printf("你选择了4. 查询学生信息,想看人家的小秘密呀，快来告诉我。");
+    SetPosition(MARGIN_X, INFO_END_Y + 2);
+    printf("你想要看哪个学生的信息，告诉我他的学号，我才好帮你偷窥他的小秘密哦：");
+    scanf("%d", &num);
+    while ( p->stu_num != num)
+    {
+        p = p->next;
+    }
+    if (p == NULL)
+    {
+        SetPosition(MARGIN_X, INFO_END_Y + 3);
+        printf("我找不到你说的那个人，你仔细回忆一下他的学号。");
+    }
+    else
+    {
+        SetPosition(MARGIN_X, INFO_END_Y + 3);
+        printf("我找到这个同学了，快看哦，我找这个信息可不容易了呢！");
+        SetPosition(MARGIN_X + 4, INFO_END_Y + 4);
+        puts("学号\t名字\t性别\t数学\t语文\t英语\t总成绩");         //表头
+        SetPosition(MARGIN_X + 4, INFO_END_Y + 5);
+        puts("====\t====\t====\t====\t====\t====\t======\t");
+        total = p->grades.Maths + p->grades.Chinese + p->grades.English;
+        SetPosition(MARGIN_X + 4, INFO_END_Y + 6);
+        printf("%2d\t%s\t%2s\t%3d\t%3d\t%3d\t%4d\n",p->stu_num, p->stu_name, p->stu_sex, p->grades.Maths, p->grades.Chinese, p->grades.English, total);
+    }
+}
+
+
 /* 5. 显示所有学生信息以及统计信息 */
 void ShowStuInfo(Student * L)
 {
-    Clear(0, INFO_END_Y, 9);
+    Clear(0, INFO_END_Y, N);
     Student *p;
     p = L->next;
     SetPosition(MARGIN_X, INFO_END_Y + 1);

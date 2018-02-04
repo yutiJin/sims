@@ -13,7 +13,7 @@
 #define MARGIN_X 20     //向左移20个座位
 #define INFO_START_Y 3  //主界面开始信息的Y坐标
 #define INFO_END_Y 12   //主界面结束信息的Y坐标
-
+#define N 18            //要删除的信息行
 
 
 /* 各科成绩信息 */
@@ -51,6 +51,12 @@ void AddStuInfo(Student * L);
 
 /* 2. 删除学生信息(根据学号) */
 void DeleteStuInfo(Student * L);
+
+/* 3. 修改学生信息(根据学号) */
+void UpdataStuInfo(Student * L);
+
+/* 4. 查询学生信息(根据学号)*/
+void ShowOneStuInfo(Student * L);
 
 /* 5. 显示所有学生信息以及统计信息 */
 void ShowStuInfo(Student * L);

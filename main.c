@@ -36,8 +36,10 @@ int main()
             DeleteStuInfo(Stu);
             break;
         case '3':   //修改学生信息(根据学号)
+            UpdataStuInfo(Stu);
             break;
         case '4':   //查询学生信息
+            ShowOneStuInfo(Stu);
             break;
         case '5':   //显示所有学生信息以及统计信息
             ShowStuInfo(Stu);

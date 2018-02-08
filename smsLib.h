@@ -14,13 +14,6 @@ void SetColor(int foreColor, int backColor);
  * 8-灰色, 9-淡蓝色, 10-淡绿色, 11-淡浅绿色, 12-淡红色, 13-淡紫色, 14-淡黄色, 15-亮白色
  */
 
-
-/* 设置光标的位置 -- 定位在哪一行 哪一列  居中用*/
-void SetPosition(int x, int y);
-
-/* 从x，y坐标开始，清空rowCount行*/
-void Clear(int x, int y, int rowCount);
-
 #endif // SMSLIB_H_INCLUDED
 
 

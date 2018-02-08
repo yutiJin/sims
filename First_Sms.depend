@@ -1,26 +1,26 @@
 # depslib dependency file v1.0
-1517733164 source:e:\c\demo\first_sms\main.c
+1518071989 source:e:\c\demo\first_sms\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	"sms.h"
 	"smsLib.h"
 
-1517733110 source:e:\c\demo\first_sms\sms.c
+1518076719 source:e:\c\demo\first_sms\sms.c
 	"sms.h"
 	"smsLib.h"
 	<conio.h>
 
-1517733198 e:\c\demo\first_sms\sms.h
+1518075901 e:\c\demo\first_sms\sms.h
 	<string.h>
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 
-1517451259 e:\c\demo\first_sms\smslib.h
+1517968213 e:\c\demo\first_sms\smslib.h
 	"sms.h"
 
-1517452047 source:e:\c\demo\first_sms\smslib.c
+1517967302 source:e:\c\demo\first_sms\smslib.c
 	"smsLib.h"
 
